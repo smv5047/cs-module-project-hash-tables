@@ -55,7 +55,8 @@ class HashTable:
         """
 
         # Your code here
-
+    # HASHING FUNCTION
+    # TAKES A KEY AND RETURNS A HASH
     def djb2(self, key):
         """
         DJB2 hash, 32-bit
@@ -67,6 +68,10 @@ class HashTable:
             hash = (hash * 33) + ord(c)
         return hash
 
+    # PLACEMENT IN HASH TABLE
+    # TAKES KEY
+    # RUNS IT THROUGH HASHING FUNCTION
+    # THEN USES MODELO TO DETEMINE INDEX LOCATION WITHIN HASH TABLE
     def hash_index(self, key):
         """
         Take an arbitrary key and return a valid integer index
@@ -75,6 +80,9 @@ class HashTable:
 
         return self.djb2(key) % self.capacity
 
+    # TAKES KEY VALUE PAIR
+    # Runs key through hash indexing function (which determine location to place)
+    # Then place value at that area
     def put(self, key, value):
         """
         Store the value with the given key.
@@ -87,6 +95,8 @@ class HashTable:
         index = self.hash_index(key)
         self.storage[index] = value
 
+    # PASSES KEY TO HASH INDEX FUNCTION (WHICH DETERIMINES THE HASH MODELO'd
+    # THEN UPDATE THAT SPACE TO NONE
     def delete(self, key):
         """
         Remove the value stored with the given key.
@@ -98,6 +108,8 @@ class HashTable:
         delete_index = self.hash_index(key)
         self.storage[delete_index] = None
 
+    # PASSES KEY TO HASH INDEX FUNCTION (WHICH DETERIMINES THE HASH MODELO'd
+    # THEN Return that value (if it exists)
     def get(self, key):
         """
         Retrieve the value stored with the given key.
